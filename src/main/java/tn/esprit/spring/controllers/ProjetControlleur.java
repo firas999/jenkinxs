@@ -40,7 +40,7 @@ public class ProjetControlleur {
 	@GetMapping("/AfficheProjet/{id}")
 	public ResponseEntity<projet> AfficheProjet (@PathVariable Long id){
 		projet P= ProjetService.retrieveProjet(id);
-		if (P.equals(null))
+		if (P==null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		else
 			return new ResponseEntity<>(P, HttpStatus.OK);
@@ -70,7 +70,7 @@ public class ProjetControlleur {
 	@GetMapping("/FindBytitle/{titre}")
 	public ResponseEntity<List<projet> > AfficheProjetParTitre (@PathVariable String titre){
 		List<projet>  P= ProjetService.FindbyTitre(titre);
-		if (P.equals(null))
+		if (P==null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		else
 			return new ResponseEntity<>(P, HttpStatus.OK);

@@ -32,11 +32,11 @@ pipeline{
                 {
               steps{
                   script{
-		  bat 'copy  C:\Users\dell\.jenkins\workspace\DemoPipeline\target .'
-                  bat 'docker build . -t 123anz/jenkins:$Docker_tag'
+		  bat 'copy  C:/Users/dell/.jenkins/workspace/DemoPipeline/target .'
+                  sh 'docker build . -t 123anz/jenkins:$Docker_tag'
 		  withCredentials([string(credentialsId: 'dockerPASS', variable: 'docker_password')]) {			    
-				  bat 'docker login -u 123anz -p $docker_password'
-				  bat 'docker push 123anz/jenkins:$Docker_tag'
+				  sh 'docker login -u 123anz -p $docker_password'
+				  sh 'docker push 123anz/jenkins:$Docker_tag'
 			}
                        }
                     }

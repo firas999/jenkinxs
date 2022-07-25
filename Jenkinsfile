@@ -1,7 +1,13 @@
+def getDockerTag(){
+        def tag = sh script: 'git rev-parse HEAD', returnStdout: true
+        return tag
+        }
 pipeline{
 
       agent any
-        
+         environment{
+	    Docker_tag = getDockerTag()
+        }
         stages{
 
               stage('Quality Gate Status Check'){
@@ -21,7 +27,20 @@ pipeline{
 		  
                  	}
                	 }  
-              }	
+              }
+              stage('build')
+                {
+              steps{
+                  script{
+		  sh 'cp -r ../devops-training@2/target .'
+                  sh 'docker build . -t 123anz/jenkins:$Docker_tag'
+		  withCredentials([string(credentialsId: 'dockerPASS', variable: 'docker_password')]) {			    
+				  sh 'docker login -u 123anz -p $docker_password'
+				  sh 'docker push 123anz/jenkins:$Docker_tag'
+			}
+                       }
+                    }
+                 }	
 		
             }	       	     	         
 }

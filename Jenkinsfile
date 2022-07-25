@@ -32,7 +32,7 @@ pipeline{
                 {
               steps{
                   script{
-		  sh 'cp -r ../devops-training@2/target .'
+		  bat 'copy  C:\Users\dell\.jenkins\workspace\DemoPipeline\target .'
                   sh 'docker build . -t 123anz/jenkins:$Docker_tag'
 		  withCredentials([string(credentialsId: 'dockerPASS', variable: 'docker_password')]) {			    
 				  sh 'docker login -u 123anz -p $docker_password'

@@ -11,6 +11,11 @@ public interface IServiceProjet {
 
 	projet updateProjet(Long id,projet p);
 
-	pro
+	projet retrieveProjet(Long id);
+	List<projet>  FindbyTitre(String titre);
+
+	void removeProjet(Long id);
+	
+	List<projet> PorjetFermer();
 	
 }

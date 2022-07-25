@@ -29,7 +29,14 @@ public class ProjetControlleur {
 	@GetMapping("/AfficheProjets")
 	public ResponseEntity<List<projet>> AfficheProjets (){
 		List<projet> P;
+		P=ProjetService.retrieveAllProjets();		
+		if (P.isEmpty())
+			 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		else
+			return new ResponseEntity<>(P, HttpStatus.OK);
 		
+	}
+	
 	@GetMapping("/AfficheProjet/{id}")
 	public ResponseEntity<projet> AfficheProjet (@PathVariable Long id){
 		projet P= ProjetService.retrieveProjet(id);
@@ -40,10 +47,13 @@ public class ProjetControlleur {
 	}
 	
 	@PostMapping("/add-projet")
-	addProjet(p);
+	@ResponseBody
+	public projet addEquipe(@RequestBody projet p) {
+		System.out.println(p.getChef());
+		return ProjetService.addProjet(p);
 	}
 	
-	@rojet/{id}")
+	@PutMapping("/ModifierProjet/{id}")
 	public projet ModifierProjet(@PathVariable Long id,@RequestBody projet P){
 		
 		

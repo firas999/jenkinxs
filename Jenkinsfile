@@ -5,7 +5,7 @@ pipeline {
        stage ('Scan and Build Jar File') {
             steps {
                withSonarQubeEnv('sonarserver') {
-                start 'mvn clean package sonar:sonar'
+                bat 'mvn clean package sonar:sonar'
                 }
             }
         }

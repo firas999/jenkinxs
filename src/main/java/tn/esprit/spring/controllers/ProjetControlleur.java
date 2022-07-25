@@ -40,7 +40,7 @@ public class ProjetControlleur {
 	@GetMapping("/AfficheProjet/{id}")
 	public ResponseEntity<projet> AfficheProjet (@PathVariable Long id){
 		projet P= ProjetService.retrieveProjet(id);
-		if (P==null)
+		if (P.equals(null))
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		else
 			return new ResponseEntity<>(P, HttpStatus.OK);

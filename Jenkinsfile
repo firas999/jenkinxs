@@ -1,20 +1,24 @@
- pipeline {
-        agent none
-        stages {
-          stage("build & SonarQube analysis") {
-            agent any
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone sources') {
             steps {
-              withSonarQubeEnv('sonarserver') {
-                sh 'mvn clean package sonar:sonar'
-              }
+                git url: 'https://github.com/firas999/jenkinxs.git'
             }
-          }
-          stage("Quality Gate") {
-            steps {
-              timeout(time: 1, unit: 'HOURS') {
-                waitForQualityGate abortPipeline: true
-              }
-            }
-          }
         }
-      }
+
+        stage('SonarQube analysis') {
+            steps {
+                withSonarQubeEnv('sonarserver') {
+                    sh "mvn clean package sonar:sonar"
+                }
+            }
+        }
+        stage("Quality gate") {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }
+    }
+}

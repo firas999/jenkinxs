@@ -32,7 +32,7 @@ pipeline{
                 {
               steps{
                   script{
-                  bat 'docker build C:/Users/dell/.jenkins/workspace/DemoPipeline -t 123anz/jenkins:Docker_tag'
+                  bat 'docker build C:/Users/dell/.jenkins/workspace/DemoPipeline -t 123anz/jenkins:BackEndImage:latest'
 		  withCredentials([string(credentialsId: 'dockerPASS', variable: 'docker_password')]) {			    
 				  bat 'docker login -u 123anz -p ~$cd,)Vcs,-4h=Q'
 				  bat 'docker push 123anz/jenkins:Docker_tag'

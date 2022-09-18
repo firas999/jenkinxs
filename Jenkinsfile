@@ -9,7 +9,6 @@ pipeline{
                   steps{
                       script{
 			      withSonarQubeEnv('sonarqube') { 
-			      sh '/bin/mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install'
 			      sh '/bin/mvn  sonar:sonar'
                        	     	}
 			      timeout(time: 1, unit: 'HOURS') {

@@ -8,7 +8,7 @@ pipeline{
               stage('Quality Gate Status Check'){
                   steps{
                       script{
-			      withSonarQubeEnv('sonarserver') { 
+			      withSonarQubeEnv('sonarqube') { 
 			      sh '/bin/mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install'
 			      sh '/bin/mvn  sonar:sonar'
                        	     	}

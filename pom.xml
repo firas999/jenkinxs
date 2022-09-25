@@ -24,15 +24,6 @@
 		<sonar.host.url>http://192.168.1.12:9000/</sonar.host.url>
 		
 		
-		<sonar.scm.provider>git</sonar.scm.provider>
-		<sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>
-		<sonar.coverage.jacoco.xmlReportPaths>${project.test.result.directory}/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-		<sonar.exclusions>
-			**/*.xml
-		</sonar.exclusions>
-		<sonar.coverage.exclusions>
-			**/qualitymeasurementsample/*
-		</sonar.coverage.exclusions>
 	</properties>
 	<dependencies>
 		<dependency>

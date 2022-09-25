@@ -17,6 +17,23 @@
 	<properties>
 		<java.version>11</java.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+		
+
+		<!-- test result measurements -->
+		
+		<sonar.host.url>http://192.168.1.12:9000/</sonar.host.url>
+		
+		<sonar.login>admin</sonar.login>
+		<sonar.password>08022021++</sonar.password>
+		<sonar.scm.provider>git</sonar.scm.provider>
+		<sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>
+		<sonar.coverage.jacoco.xmlReportPaths>${project.test.result.directory}/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+		<sonar.exclusions>
+			**/*.xml
+		</sonar.exclusions>
+		<sonar.coverage.exclusions>
+			**/qualitymeasurementsample/*
+		</sonar.coverage.exclusions>
 	</properties>
 	<dependencies>
 		<dependency>
